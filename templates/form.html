@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GCK/Easter Retreat Hostel Allocation Form</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>GCK/Easter Retreat Hostel Allocation Form</h1>
+    <p>Fill in the Form below to  enable you view your allocated bedspace</p>
+  </header>
+
+  <main>
+    <section class="allocation-form">
+      <h2>Register and Book Your Hostel</h2>
+      <form method="POST">
+        <div class="form-group">
+          <label for="first_name">First Name:</label>
+          <input type="text" id="first_name" name="first_name" required>
+        </div>
+        <div class="form-group">
+          <label for="surname">Surname:</label>
+          <input type="text" id="surname" name="surname" required>
+        </div>
+        <div class="form-group">
+          <label for="group">Group:</label>
+          <select id="group" name="group" required>
+            <option value="">Select Group</option>
+            <option value="group1">AGEGE</option>
+            <option value="group2">AJEGUNLE</option>
+            <option value="group3">ALIMOSHO</option>
+            <option value="group4">BAGAGRY</option>
+            <option value="group5">EPE</option>
+            <option value="group5">FESTAC</option>
+            <option value="group5">GBAGADA</option>
+            <option value="group5">IKEJA</option>
+            <option value="group5">IKORODU</option>
+            <option value="group5">ISOLO</option>
+            <option value="group5">KETU</option>
+            <option value="group5">LAGOS ISLAND</option>
+            <option value="group5">MUSHIN</option>
+            <option value="group5">ORILE</option>
+            <option value="group5">OSHODI</option>
+            <option value="group5">SOMOLU</option>
+            <option value="group5">SURULERE</option>
+            <option value="group5">YABA</option>
+            <option value="other">Other (specify below)</option>
+          </select>
+          <input type="text" id="other_group" name="other_group" style="display: none;">
+          <script>
+            document.getElementById('group').addEventListener('change', function() {
+              if (this.value === 'other') {
+                document.getElementById('other_group').style.display = 'block';
+              } else {
+                document.getElementById('other_group').style.display = 'none';
+              }
+            });
+          </script>
+        </div>
+        <div class="form-group">
+          <label for="campus">Campus:</label>
+          <select id="campus" name="campus" required>
+            <option value="">Select Campus</option>
+            <option value="lasu">LASU IKEJA</option>
+            <option value="lasu">LASU EPE</option>
+            <option value="lasu">LASU OJO</option>
+            <option value="unilag">University of Lagos (UNILAG)</option>
+            <option value="">AFRICAN CHURCH</option>
+            <option value="">AOCOED</option>
+            <option value="">ANCHOR UNIVERSITY</option>
+            <option value="">CALEB UNIVERSITY</option>
+            <option value="">CISM CAMPUS</option>
+            <option value="">CORPERS</option>
+            <option value="">FCE (TECH) AKOKA</option>
+            <option value="">FISHERIES</option>
+            <option value="">FRENCH VILLAGE</option>
+            <option value="">FSTC</option>
+            <option value="">LASPOTECH ISOLO</option>
+            <option value="">LASPOTECH SURULERE</option>
+            <option value="">LAW SCHOOL</option>
+            <option value="">LUTH</option>
+            <option value="">NOUN</option>
+            <option value="">ORTHOPADIC IGBOBI</option>
+            <option value="">PROJECT TIME</option>
+            <option value="">RADIOGRAPHY</option>
+            <option value="">YABATECH</option>
+            <option value="">YABATECH EPE</option>
+            <option value="other">OTHERS</option>
+          </select>
+          <input type="text" id="other_campus" name="other_campus" style="display: none;">
+          <script>
+            document.getElementById('campus').addEventListener('change', function() {
+              if (this.value === 'other') {
+                document.getElementById('other_campus').style.display = 'block';
+              } else {
+                document.getElementById('other_campus').style.display = 'none';
+              }
+            });
+          </script>
+        </div>
+        <div class="form-group">
+          <label for="address">Home Address:</label>
+          <textarea id="address" name="address" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="whatsapp">WhatsApp Number:</label>
+          <input type="tel" id="whatsapp" name="whatsapp" pattern="[0-9]{11}" placeholder="e.g. 08012345678">
+        </div>
+        <div class="form-group">
+          <label for="participant_type">Participant Type:</label>
+          <select id="participant_type" name="participant_type" required>
+            <option value="">Select Type</option>
+            <option value="invitee">Invitee</option>
+            <option value="first_timer">First Time attendee</option>
+            <option value="regular">Regular attendee</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="gender">Gender:</label>
+          <select id="gender" name="gender" required>
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div class="form-group">
+            <label for="ageBracket">Age bracket:</label>
+            <select id="ageBracket" name="ageBracket" required>
+              <option value="">Select Age bracket</option>
+              <option value="">16-19</option>
+              <option value="">20-23</option>
+              <option value="">24-26</option>
+              <option value="">27-30</option>
+              <option value="">Above 31</option>
+            </select>
+          </div>
+        <div class="form-group form-submit">
+          <button type="submit">View Bedspace</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <style>
+    /* Add some basic styles here */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.2em;
+    }
+
+    .allocation-form {
+      border: 1px solid #ddd;
+      padding: 20px;
+      margin: 0 auto;
+      max-width: 500px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .form-submit {
+      text-align: center;
+    }
+
+    button[type="submit"] {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #45A049;
+    }
+  </style>
+</body>
+</html>

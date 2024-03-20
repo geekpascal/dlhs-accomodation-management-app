@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Peace: Church Hostel Booking</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <img src="{{ url_for('static', filename='dlcf.jpg') }}" alt="Church Logo">
+  </header>
+
+  <main>
+    <section class="hero">
+      <!--<h2>MARCH GCK/EASTER RETREAT 2024</h2>-->
+      <h3>GCK/EASTER RETREAT 2024 Registration/Hostel Allocation Form</h3>
+      <p>This form is created to collect the information of participants at the GCK/EASTER RETREAT 2024 - held at Deeper Life High School, DLICC.</p>
+      <p>Ready to register and find your allocated hostel?</p>
+      <a href="{{ url_for('form') }}">Click here to fill the form</a> </section>
+  </main>
+
+  <style>
+    
+    body {
+      font-family: cursive;
+      margin: 0;
+      padding: 20px;
+      background-color: #f0f0f0;
+    }
+
+    :root {
+     --bg-color: #fff;
+     --text-color: #1d1d1d;
+     --second-color: #2b2b2b;
+     --main-color: #161616;
+     --big-font: 2rem;
+     --h2-font: 3rem;
+     --p-font: 1.1rem;
+    }
+
+    header {
+      text-align: center;
+    }
+
+    h1, h2, h3 {
+      font-size: var(--big-font);
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: var(--p-font);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 20px;
+      margin: 0 auto;
+      max-width: 600px;
+      background-color: #fff;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    a {
+      text-align: center;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+      display: inline-block;
+      color: var(--bg-color);
+      background: #2f80ed;
+      font-size: var(--p-font);
+      padding: 10px 40px;
+      margin-top: 20px;
+      text-decoration: none;
+      font-weight: 500;
+      line-height: 24px;
+      border-radius: 30px;
+      transition: ease 0.4s;
+    }
+
+    a:hover {
+      background-color: darkblue;
+      transform: scale(1.1);
+    }
+
+    img {
+     height: 200px;
+     width: 640px;
+     border-radius: 10px;
+    }
+
+  </style>
+</body>
+</html>
