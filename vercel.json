@@ -7,12 +7,18 @@
     ],
     "routes": [
       {
-        "src": "/static/images/(.*)",
-        "dest": "/static/images/$1"
-      },
-      {
         "src": "/(.*)",
         "dest": "index.py"
       }
-    ]
+    ],
+    "env": {
+      "POSTGRES_URL": "postgres://default:iCnU9kF5xDVH@ep-crimson-king-a400qmq5-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require",
+      "POSTGRES_PRISMA_URL": "postgres://default:iCnU9kF5xDVH@ep-crimson-king-a400qmq5-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require&pgbouncer=true&connect_timeout=15",
+      "POSTGRES_URL_NO_SSL": "postgres://default:iCnU9kF5xDVH@ep-crimson-king-a400qmq5-pooler.us-east-1.aws.neon.tech:5432/verceldb",
+      "POSTGRES_URL_NON_POOLING": "postgres://default:iCnU9kF5xDVH@ep-crimson-king-a400qmq5.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require",
+      "POSTGRES_USER": "default",
+      "POSTGRES_HOST": "ep-crimson-king-a400qmq5-pooler.us-east-1.aws.neon.tech",
+      "POSTGRES_PASSWORD": "iCnU9kF5xDVH",
+      "POSTGRES_DATABASE": "verceldb"
+    }
   }

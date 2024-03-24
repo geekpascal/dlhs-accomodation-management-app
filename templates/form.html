@@ -17,6 +17,17 @@
       <h2>Register and Book Your Hostel</h2>
       <form method="POST">
         <div class="form-group">
+          <label for="title">Title:</label>
+          <select id="title" name="title" required>
+            <option value="">Select Title</option>
+            <option value="Prof.">Prof.</option>
+            <option value="Dr.">Dr.</option>
+            <option value="Mr.">Mr.</option>
+            <option value="Mrs.">Mrs.</option>
+            <option value="Miss.">Miss</option>
+          </select>
+        </div>
+        <div class="form-group">
           <label for="first_name">First Name:</label>
           <input type="text" id="first_name" name="first_name" required>
         </div>
@@ -25,27 +36,41 @@
           <input type="text" id="surname" name="surname" required>
         </div>
         <div class="form-group">
+          <label for="category">Category:</label>
+          <select id="category" name="category" required>
+            <option value="">Select Category</option>
+            <option value="Planning Committe">Planning Committe</option>
+            <option value="Associate Coordinator">Associate Coordinator</option>
+            <option value="Principal Officer">Principal Officer</option>
+            <option value="Choir">Choir</option>
+            <option value="Staff">Staff</option>
+            <option value="Student">Student</option>
+            <option value="Corper">Corper</option>
+            <option value="Others (Graduate, Postgraduate, etc.)">Others (Graduate, Postgraduate, etc.)</option>
+          </select>
+        </div>
+        <div class="form-group">
           <label for="group">Group:</label>
           <select id="group" name="group" required>
             <option value="">Select Group</option>
-            <option value="group1">AGEGE</option>
-            <option value="group2">AJEGUNLE</option>
-            <option value="group3">ALIMOSHO</option>
-            <option value="group4">BAGAGRY</option>
-            <option value="group5">EPE</option>
-            <option value="group5">FESTAC</option>
-            <option value="group5">GBAGADA</option>
-            <option value="group5">IKEJA</option>
-            <option value="group5">IKORODU</option>
-            <option value="group5">ISOLO</option>
-            <option value="group5">KETU</option>
-            <option value="group5">LAGOS ISLAND</option>
-            <option value="group5">MUSHIN</option>
-            <option value="group5">ORILE</option>
-            <option value="group5">OSHODI</option>
-            <option value="group5">SOMOLU</option>
-            <option value="group5">SURULERE</option>
-            <option value="group5">YABA</option>
+            <option value="AGEGE">AGEGE</option>
+            <option value="AJEGUNLE">AJEGUNLE</option>
+            <option value="ALIMOSHO">ALIMOSHO</option>
+            <option value="BAGAGRY">BAGAGRY</option>
+            <option value="EPE">EPE</option>
+            <option value="FESTAC">FESTAC</option>
+            <option value="GBAGADA">GBAGADA</option>
+            <option value="IKEJA">IKEJA</option>
+            <option value="IKORODU">IKORODU</option>
+            <option value="ISOLO">ISOLO</option>
+            <option value="KETU">KETU</option>
+            <option value="LAGOS ISLAND">LAGOS ISLAND</option>
+            <option value="MUSHIN">MUSHIN</option>
+            <option value="ORILE">ORILE</option>
+            <option value="OSHODI">OSHODI</option>
+            <option value="SOMOLU">SOMOLU</option>
+            <option value="SURULERE">SURULERE</option>
+            <option value="YABA">YABA</option>
             <option value="other">Other (specify below)</option>
           </select>
           <input type="text" id="other_group" name="other_group" style="display: none;">
@@ -63,31 +88,37 @@
           <label for="campus">Campus:</label>
           <select id="campus" name="campus" required>
             <option value="">Select Campus</option>
-            <option value="lasu">LASU IKEJA</option>
-            <option value="lasu">LASU EPE</option>
-            <option value="lasu">LASU OJO</option>
-            <option value="unilag">University of Lagos (UNILAG)</option>
-            <option value="">AFRICAN CHURCH</option>
-            <option value="">AOCOED</option>
-            <option value="">ANCHOR UNIVERSITY</option>
-            <option value="">CALEB UNIVERSITY</option>
-            <option value="">CISM CAMPUS</option>
-            <option value="">CORPERS</option>
-            <option value="">FCE (TECH) AKOKA</option>
-            <option value="">FISHERIES</option>
-            <option value="">FRENCH VILLAGE</option>
-            <option value="">FSTC</option>
-            <option value="">LASPOTECH ISOLO</option>
-            <option value="">LASPOTECH SURULERE</option>
-            <option value="">LAW SCHOOL</option>
-            <option value="">LUTH</option>
-            <option value="">NOUN</option>
-            <option value="">ORTHOPADIC IGBOBI</option>
-            <option value="">PROJECT TIME</option>
-            <option value="">RADIOGRAPHY</option>
-            <option value="">YABATECH</option>
-            <option value="">YABATECH EPE</option>
-            <option value="other">OTHERS</option>
+            <option value="LASU IKEJA">LASU IKEJA</option>
+            <option value="LASU EPE">LASU EPE</option>
+            <option value="LASU OJO">LASU OJO</option>
+            <option value="UNILAG">University of Lagos (UNILAG)</option>
+            <option value="AFRICAN CHURCH">AFRICAN CHURCH</option>
+            <option value="AOCOED">AOCOED</option>
+            <option value="ANCHOR UNIVERSITY">ANCHOR UNIVERSITY</option>
+            <option value="CALEB UNIVERSITY">CALEB UNIVERSITY</option>
+            <option value="CISM CAMPUS">CISM CAMPUS</option>
+            <option value="CORPERS">CORPERS</option>
+            <option value="FCE (TECH) AKOKA">FCE (TECH) AKOKA</option>
+            <option value="FISHERIES">FISHERIES</option>
+            <option value="FRENCH VILLAGE">FRENCH VILLAGE</option>
+            <option value="FSTC">FSTC</option>
+            <option value="LASUSTECH">LASUSTECH</option>
+            <option value="LAW SCHOOL">LAW SCHOOL</option>
+            <option value="LUTH">LUTH</option>
+            <option value="NOUN">NOUN</option>
+            <option value="LUTH">LUSUTH</option>
+            <option value="NOIC">NOIC</option>
+            <option value="NASFA">NASFA</option>
+            <option value="ORTHOPADIC IGBOBI">ORTHOPADIC IGBOBI</option>
+            <option value="PROJECTIME">PROJECTIME</option>
+            <option value="RADIOGRAPHY">RADIOGRAPHY</option>
+            <option value="YABATECH">YABATECH</option>
+            <option value="YABATECH EPE">YABATECH EPE</option>
+            <option value="LASUED IJANIKIN">LASUED IJANIKIN</option>
+            <option value="LASUED EPE">LASUED EPE</option>
+            <option value="SON, IGANDO">SON, IGANDO</option>
+            <option value="LCP">LCP</option>
+            <option value="other">OTHERS (Specify Campus)</option>
           </select>
           <input type="text" id="other_campus" name="other_campus" style="display: none;">
           <script>
@@ -101,9 +132,17 @@
           </script>
         </div>
         <div class="form-group">
+          <label for="areYouAworker">Are you a worker? if yes specify area of work :</label>
+          <input type="text" id="areYouAworker" name="areYouAworker" placeholder="">
+        </div>
+        <div class="form-group">
           <label for="address">Home Address:</label>
           <textarea id="address" name="address" required></textarea>
         </div>
+        <div class="form-group">
+          <label for="emailAddress">Email Address:</label>
+          <input type="email" id="emailAddress" name="emailAddress" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" placeholder="example@example.com" required>
+      </div>
         <div class="form-group">
           <label for="whatsapp">WhatsApp Number:</label>
           <input type="tel" id="whatsapp" name="whatsapp" pattern="[0-9]{11}" placeholder="e.g. 08012345678">
@@ -113,31 +152,31 @@
           <select id="participant_type" name="participant_type" required>
             <option value="">Select Type</option>
             <option value="invitee">Invitee</option>
-            <option value="first_timer">First Time attendee</option>
-            <option value="regular">Regular attendee</option>
+            <option value="First Time attendee">First Time attendee</option>
+            <option value="Regular attendee">Regular attendee</option>
           </select>
         </div>
         <div class="form-group">
           <label for="gender">Gender:</label>
           <select id="gender" name="gender" required>
             <option value="">Select Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
           </select>
         </div>
         <div class="form-group">
             <label for="ageBracket">Age bracket:</label>
             <select id="ageBracket" name="ageBracket" required>
               <option value="">Select Age bracket</option>
-              <option value="">16-19</option>
-              <option value="">20-23</option>
-              <option value="">24-26</option>
-              <option value="">27-30</option>
-              <option value="">Above 31</option>
+              <option value="16-19">16-19</option>
+              <option value="20-23">20-23</option>
+              <option value="24-26">24-26</option>
+              <option value="27-30">27-30</option>
+              <option value="Above 31">Above 31</option>
             </select>
           </div>
         <div class="form-group form-submit">
-          <button type="submit">View Bedspace</button>
+          <button type="submit">View Hostel</button>
         </div>
       </form>
     </section>
