@@ -1,12 +1,11 @@
 from flask import Flask, render_template, redirect, url_for, flash, session, request
 from flask_sqlalchemy import SQLAlchemy
-from forms import RegistrationForm
 import os
 
 app = Flask(__name__)
 app.static_folder = 'static'
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:vipascal@localhost:5432/dlccdb'
-app.config['SQLALCHEMY_DATABASE_URI']= os.environ.get('POSTGRES_URL')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:vipascal@localhost:5432/dlccdb'
+# app.config['SQLALCHEMY_DATABASE_URI']= os.environ.get('DATABASE_URI')
 app.config['SECRET_KEY'] = 'mysecretkey'
 db = SQLAlchemy(app)
 
@@ -39,6 +38,7 @@ def index():
 
 
 def determine_accommodation(gender, campus, category):
+    print(gender, campus, category)
     # Gender check
     if gender.lower() == 'male':
         gender_key = 'Boys'
@@ -49,37 +49,6 @@ def determine_accommodation(gender, campus, category):
     else:
         return "Invalid gender provided"
     
-    # if gender == 'Male' and category == 'Choir':
-    #     accomodation = "testing"
-    #     if category == 'Planning Committe':
-    #         accomodation = 'White House'
-    #     elif category == 'Associate Coordinator':
-    #         accomodation = 'Bethel 4'
-    #     elif category == 'Choir':
-    #         accomodation = 'Right wing 2nd floor of the boys Hostel'
-    #     elif category == 'Staff':
-    #         accomodation = 'Left wing 2nd floor of the boys Hostel'
-    #     elif category == 'Corpers':
-    #         accomodation = 'Left wing 2nd floor of the boys Hostel' 
-    #     elif category == 'Principal Officer':
-    #         accomodation = 'White House'
-    #     elif category == 'Others':
-    #         accomodation = 'Common Room'            
-    # else:
-    #     if category == 'Planning Committe':
-    #         accomodation = 'White House'
-    #     elif category == 'Associate Coordinator':
-    #         accomodation = 'Bethel 4'
-    #     elif category == 'Choir':
-    #         accomodation = 'Right wing 2nd floor of the girls Hostel'
-    #     elif category == 'Staff':
-    #         accomodation = 'Left wing 2nd floor of the girls Hostel'
-    #     elif category == 'Corpers':
-    #         accomodation = 'Left wing 2nd floor of the girls Hostel'
-    #     elif category == 'Principal Officer':
-    #         accomodation = 'White House' 
-    #     elif category == 'Others':
-    #         accomodation = 'Common Room'
 
     # Campus and group check
     schools = {
@@ -137,48 +106,11 @@ def determine_accommodation(gender, campus, category):
 
     # Accommodation determination
     accommodation = "Unknown"
-    
-    # if school_key and category_key == 'Choir' and gender == 'Female':
-    #     accommodation = "Right wing 2nd floor of the girls Hostel"
-    
-    # if category_key == 'Choir' and gender == 'Male':
-    #     accommodation = "Right wing 2nd floor of the boys Hostel"
-    
-    
-    
+      
       
 
-#working code
-    
-    # if categories == "Student" and school_key not in categories:    
-    #     if school_key in ['UNILAG', 'LUTH', 'YABATECH', 'LASU OJO']:
-    #         accommodation = "Chalet 3 beside MHA after the GS lodge"
-    #     elif school_key == 'ANCHOR UNIVERSITY':
-    #         accommodation = "1st part of junior dormitory i.e the bungalow building"
-    #     elif school_key in ['FRENCH VILLAGE', "LASUED IJANIKIN"] and not girls_hostel:
-    #         accommodation = "Ground floor of boys hostel to the right"
-    #     elif school_key in ['LASUSTECH', "LASU EPE"] and not girls_hostel:
-    #         accommodation = "Ground floor of boys hostel to the left"
-    #     elif school_key in ['YABATECH EPE', 'LASUTH', 'LASUED EPE'] and not girls_hostel:
-    #         accommodation = "1st floor of the boys hostel to the right"
-    #     elif school_key in ['FCE (TECH) AKOKA', 'SON, IGANDO', 'PROJECTIME', 'RADIOGRAPHY', "NOIC", "ORTHOPADIC IGBOBI", "FISHERIES", "LCP", "LAW SCHOOL"] and not girls_hostel and not categories:
-    #         accommodation = "1st floor of the boys hostel to the left"
-    #     elif category_key == 'Corper' or school_key == 'Noun' or school_key == 'NASFA' or school_key == 'FSTC':
-    #         accommodation = "Left wing 2nd floor of the boys hostel"
-    #     elif category_key == 'Choir' and gender == 'Male':
-    #         accommodation = "Right wing 2nd floor of the boys hostel"
-    #     elif category_key == 'Planning Committe':
-    #         accommodation = "White House"
-    #     elif category_key == 'Principal Officer':
-    #         accommodation = "White House"
-    #     elif category_key == 'Associate Coordinator':
-    #         accommodation = "Bethel 4"
-    #     elif category_key == 'Others (Graduate, Postgraduate, etc.)':
-    #         accommodation = "Common Room"
-#working code     
-    
-
     if school_key in ['UNILAG', 'LUTH', 'YABATECH', 'LASU OJO'] and not categories:
+        # print("I chose unilag")
         accommodation = "Chalet 3 beside MHA after the GS lodge"
     elif school_key == 'ANCHOR UNIVERSITY' and not categories:
         accommodation = "1st part of junior dormitory i.e the bungalow building"
@@ -190,7 +122,9 @@ def determine_accommodation(gender, campus, category):
         accommodation = "1st floor of the boys hostel to the right"
     elif school_key in ['FCE (TECH) AKOKA', 'SON, IGANDO', 'PROJECTIME', 'RADIOGRAPHY', "NOIC", "ORTHOPADIC IGBOBI", "FISHERIES", "LCP", "LAW SCHOOL"] and not girls_hostel and not categories:
         accommodation = "1st floor of the boys hostel to the left"
-    elif category_key == 'Student' or school_key == 'Noun' or school_key == 'NASFA' or school_key == 'FSTC':
+        
+    # categories
+    elif category_key == 'Student' and school_key in ["Noun", 'NASFA', "FSTC"]:
         accommodation = "Left wing 2nd floor of the boys hostel"
     elif category_key == 'Choir' and gender == 'Male':
         accommodation = "Right wing 2nd floor of the boys hostel"
@@ -218,10 +152,13 @@ def determine_accommodation(gender, campus, category):
         accommodation = "1st floor of the boys hostel to the left"
     elif category_key == 'Student' and school_key == 'Noun' and school_key == 'NASFA' and school_key == 'FSTC':
         accommodation = "Left wing 2nd floor of the boys hostel"
-
-     
         
- #working code   
+    if category_key == "Staff":
+        accommodation = "Common Room"    
+  
+   
+        
+ #working code for the females  
     elif girls_hostel:
         if school_key in ['UNILAG', 'LUTH', 'YABATECH', 'LASU OJO'] and not categories:
             accommodation = "Ground floor of the girl's hostel to the left"
@@ -231,10 +168,12 @@ def determine_accommodation(gender, campus, category):
             accommodation = "1st floor of girls hostel to the left"
         elif school_key in ['FCE (TECH) AKOKA', 'SON, IGANDO', 'PROJECTIME', 'RADIOGRAPHY', "NOIC", "ORTHOPADIC IGBOBI", "FISHERIES", "LCP", "LAW SCHOOL"] and not categories:
             accommodation == "1st floor of the girls hostel to the right"
-        elif school_key == 'NOUN' or school_key == 'FSTC':
-            accommodation = "Left wing 2nd floor of the girls hostel"
         elif category_key == 'Choir' and gender == 'Female':
             accommodation = "Right wing 2nd floor of the girls hostel"
+        elif school_key == 'NOUN':
+            accommodation = "Left wing 2nd floor of the girls hostel"
+        elif school_key == 'FSTC':
+            accommodation = "Left wing 2nd floor of the girls hostel"
         elif category_key == 'Corper' and gender == 'Female':
             accommodation = "Left wing 2nd floor of the girls hostel"
         elif category_key == 'Planning Committe':
@@ -254,58 +193,11 @@ def determine_accommodation(gender, campus, category):
         elif category_key == 'Student' and school_key in ['FCE (TECH) AKOKA', 'SON, IGANDO', 'PROJECTIME', 'RADIOGRAPHY', "NOIC", "ORTHOPADIC IGBOBI", "FISHERIES", "LCP", "LAW SCHOOL"] and not categories:
             accommodation == "1st floor of the girls hostel to the right"           
             
+        if category_key == "Staff":
+            accommodation = "Common Room" 
 
     return accommodation
 #working code
-
-
-# def assign_hostel(participant):
-#     # Define your hostel assignment logic here
-#     # For example, you can use if-else statements or a switch-case based on the participant's category, group, campus, and gender
-
-#     if participant.category == 'Planning Committe':
-#         participant.hostel = 'Hostel A'
-#     elif participant.category == 'Associate Coordinator':
-#         participant.hostel = 'Hostel B'
-#     # Add more conditions or cases as needed
-#         accommodation = "Unknown"
-
-#     if participant.campus in ['Unilag', 'LUTH', 'Yabatech', 'LASU Ojo']:
-#         accommodation = "Chalet 3 beside MHA after the GS lodge"
-#     elif participant.campus == 'ANCHOR':
-#         accommodation = "1st part of junior dormitory i.e the bungalow building"
-#     elif participant.campus in ['LASUED Ijanikin', 'French village'] and not girls_hostel:
-#         accommodation = "Ground floor of boys Hostel to the right"
-#     elif participant.campus in ['LASUSTECH', 'LASU Epe'] and not girls_hostel:
-#         accommodation = "Ground floor of boys Hostel to the left"
-#     elif participant.campus in ['Yabatech Epe', 'LASUTH', 'LASUED Epe'] and not girls_hostel:
-#         accommodation = "1st floor of the boys Hostel to the right"
-#     elif participant.campus in ['FCE(T)', 'SON', 'Igando', 'Projectime', 'Radiography', 'NOIC', 'Orthopaedic', 'LCP', 'law school Fisheries'] and not girls_hostel:
-#         accommodation = "1st floor of the boys Hostel to the left"
-#     elif participant.campus == 'Corpers' or group_key == 'Staff of tertiary institutions' or group_key == 'Noun' or group_key == 'NASFA' or group_key == 'FSTC':
-#         accommodation = "Left wing 2nd floor of the boys Hostel"
-#     elif participant.campus == 'Choir':
-#         accommodation = "Right wing 2nd floor of the boys Hostel"
-#     elif participant.campus == "Female":
-#         if participant.campus in ['Unilag', 'LUTH', 'Yabatech', 'LASU Ojo']:
-#             accommodation = "Ground floor of the girl's hostel to the left"
-#         elif participant.campus in ['ANCHOR', 'LASUED Ijanikin', 'French village']:
-#             accommodation = "Ground floor of the girls hostel to the right"
-#         elif participant.campus in ['LASU Epe', 'Yabatech Epe', 'LASUTH', 'LASUED Epe']:
-#             accommodation = "1st floor of girls Hostel to the left"
-#         elif participant.campus in ['FCE(T)', 'SON', 'Igando', 'Projectime', 'Radiography', 'NOIC', 'Orthopaedic', 'LCP', 'law school Fisheries']:
-#             accommodation = "1st floor of the girls Hostel to the right"
-#         elif participant.campus == 'Corpers' or participant.campus == 'Staff of tertiary institutions' or group_key == 'Noun' or group_key == 'NASFA' or group_key == 'FSTC':
-#             accommodation = "Left wing 2nd floor of the girls Hostel"
-#         elif participant.campus == 'Choir':
-#             accommodation = "Right wing 2nd floor of the girls Hostel"
-
-#     return accommodation
-
-#     # Save the assigned hostel to the database
-#     db.session.commit()
-
-#     return participant.hostel
 
 
 @app.route('/form', methods=['GET', 'POST'])
@@ -376,17 +268,49 @@ def view_hostel():
 
 
 
+@app.route('/show-hostel', methods=['GET', 'POST'])
+def show_hostel():
+    # if request.method == 'POST':
+    whatsapp = request.args.get('whatsapp')
+        
+        # Query the database to find the participant by first name and surname
+    participant = Participant.query.filter_by(whatsapp=whatsapp).first()
+    print(participant)
 
-# @app.route('/view-hostel/', methods=['GET', 'POST'])
-# def view_hostel():
-#     participant_id = request.args.get('participant_id')
+    if participant:
+            # Redirect to the view_hostel route with the participant_id parameter
+        return render_template('view_hostel.html', participant=participant)
     
-#     if participant_id:
-#         participant = Participant.query.get(participant_id)
-#         if participant:
-#             return render_template('view_hostel.html', participant=participant)
-      
-#     return redirect(url_for('index'))
+    return render_template('show_hostel.html')
+
+
+# ITEMS_PER_PAGE = 10
+
+# @app.route('/attendee-list/', defaults={'page': 1}, methods=['GET', 'POST'])
+# @app.route('/attendee-list/<int:page>')
+# def attendee_list(page=1):
+#     participants = Participant.query.order_by(Participant.id.asc()).all()
+#     start = (page - 1) * ITEMS_PER_PAGE
+#     end = start + ITEMS_PER_PAGE
+#     paginated_participants = participants[start:end]
+
+#     total_items = len(participants)
+#     total_pages = (total_items + ITEMS_PER_PAGE - 1) // ITEMS_PER_PAGE
+
+#     return render_template('attendee_list.html',
+#                            participants=paginated_participants,
+#                            current_page=page,
+#                            total_pages=total_pages)
+
+
+
+#attendee-list reviced to remove the pagination (this was neccesary cus it became to large that it extended horizontally)
+@app.route('/attendee-list/', methods=['GET', 'POST'])
+def attendee_list(page=1):
+    participants = Participant.query.order_by(Participant.id.asc()).all()
+    total = len(participants)
+    
+    return render_template('attendee_list.html', total=total, participants=participants)
 
 if __name__ == '__main__':
     app.run(debug=True)

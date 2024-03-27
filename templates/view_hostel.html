@@ -3,69 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hostel Allocation</title>
+    <title>Registration/Hostel Allocation</title>
     <style>
-        /* Add your CSS styles here */
+        /* Base styles */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            text-align: center;
-            padding: 20px;
-        }
-        .card {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: bold;
+            margin: 0;
+            padding: 0;
             background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            max-width: 600px;
-            margin: 0 auto;
+            color: #333;
         }
+        
+        /* Responsive layout */
+        @media (max-width: 768px) {
+            .card {
+                padding: 15px; /* Adjust padding for smaller screens */
+            }
+
+            .card table {
+                font-size: 0.9rem; /* Adjust font size for better readability */
+            }
+
+            .card th,
+            .card td {
+                padding: 8px; /* Reduce padding for smaller screens */
+            }
+        }
+
+        /* Container and card */
+        .container {
+            max-width: 800px; /* Set a maximum container width */
+            margin: 0 auto; /* Center the container horizontally */
+            padding: 20px; /* Add some padding for visual balance */
+        }
+
+
+        /* Card heading */
         .card h1 {
             color: #333;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
+
+        /* Table styles */
         .card table {
-            width: 100%;
+            width: 100%; /* Ensure table fills available width */
             border-collapse: collapse;
             margin-bottom: 20px;
+            border: 1px solid #ddd;
         }
-        .card th, .card td {
-            padding: 10px;
+
+        .card th,
+        .card td {
+            padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
+
         .card th {
             background-color: #f2f2f2;
+            color: #333;
+            font-weight: 600;
+        }
+
+        /* Emphasize hostel column */
+        .card td.incr {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        /* Hover effect on table rows */
+        .card tbody tr:hover {
+            background-color: #f5f5f5;
+        }  
+        .container {
+            max-width: 800px; /* Set a maximum container width */
+            margin: 0 auto; /* Center the container horizontally */
+            padding: 20px; /* Add some padding for visual balance */
+            width: 100%; /* Ensure the container takes up the full width on smaller screens */
+            box-sizing: border-box; /* Include padding and border in the element's total width */
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px; /* Reduce padding on smaller screens */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 10px; /* Further reduce padding on smaller screens */
+            }
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>Hostel Allocation</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Category</th>
-                    <th>Group</th>
-                    <th>Campus</th>
-                    <th>Gender</th>
-                    <th>Hostel</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-                <tr>
-                    <td>{{ participant.first_name }} {{ participant.surname }}</td>
-                    <td>{{ participant.category }}</td>
-                    <td>{{ participant.group }}</td>
-                    <td>{{ participant.campus }}</td>
-                    <td>{{ participant.gender }}</td>
-                    <td>{{ participant.hostel }}</td>
-                </tr>
-                
-            </tbody>
-        </table>
+    <div class="container">
+        <div class="card">
+            <h1>Registration/Hostel Allocation</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Group</th>
+                        <th>Campus</th>
+                        <th>Gender</th>
+                        <th>Hostel</th>                       
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ participant.first_name }} {{ participant.surname }}</td>
+                        <td>{{ participant.category }}</td>
+                        <td>{{ participant.group }}</td>
+                        <td>{{ participant.campus }}</td>
+                        <td>{{ participant.gender }}</td>
+                        <td class="incr"><b><i>{{ participant.hostel }}</i></b></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>
