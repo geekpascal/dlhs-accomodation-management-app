@@ -4,9 +4,19 @@ import os
 
 app = Flask(__name__)
 app.static_folder = 'static'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:vipascal@localhost:5432/dlccdb'
-# app.config['SQLALCHEMY_DATABASE_URI']= os.environ.get('DATABASE_URI')
-app.config['SECRET_KEY'] = 'mysecretkey'
+# Use environment DATABASE_URI if provided, otherwise fall back to a local SQLite file in instance/
+default_db_path = os.path.join(app.root_path, 'instance', 'app.db')
+# Ensure instance folder exists so SQLite file can be created
+try:
+    os.makedirs(os.path.dirname(default_db_path), exist_ok=True)
+except Exception:
+    # If for some reason the directory cannot be created, continue and let SQLAlchemy raise a meaningful error
+    pass
+
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI') or f"sqlite:///{default_db_path}"
+# Disable modification tracking to avoid overhead and noisy warnings
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'mysecretkey')
 db = SQLAlchemy(app)
 
 # Database model class
